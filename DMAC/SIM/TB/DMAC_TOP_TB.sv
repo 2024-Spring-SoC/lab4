@@ -5,7 +5,7 @@
 `define     STAT_ADDR   32'h110
 `define     START_ADDR  32'h10c
 
-`define 	TIMEOUT_CYCLE 	99999999
+`define     TIMEOUT_CYCLE   999999
 module DMAC_TOP_TB ();
 
     reg                     clk;
@@ -199,6 +199,15 @@ module DMAC_TOP_TB ();
         len = 'h0F00;
         $display("===================================================");
         $display("= 2nd trial (long transfer)");
+        $display("= Copying %x bytes from %x to %x", len, src, dst);
+        $display("===================================================");
+        test_dma(src, dst, len);
+
+        src = 'h4278_0000;
+        dst = 'h4278_1000;
+        len = 'h0F10;
+        $display("===================================================");
+        $display("= 3rd trial (long transfer-2)");
         $display("= Copying %x bytes from %x to %x", len, src, dst);
         $display("===================================================");
         test_dma(src, dst, len);
